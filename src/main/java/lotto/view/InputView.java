@@ -25,7 +25,7 @@ public class InputView {
         return money;
     }
 
-    public List<String> inputWinNumber(){
+    public List<Integer> inputWinNumber(){
         System.out.println();
         System.out.println(INPUT_WIN_MESSAGE);
         String number = Console.readLine();
@@ -35,10 +35,10 @@ public class InputView {
             System.out.println(e.getMessage());
             throw new IllegalArgumentException("[ERROR] 6자리의 수를,로 구별해서 작성해야 합니다.");
         }
-        return Arrays.stream(number.split(",")).collect(Collectors.toList());
+        return Arrays.stream(number.split(",")).map(num->Integer.parseInt(num)).collect(Collectors.toList());
     }
 
-    public String inputBonusNumber(List<String> winNumber){
+    public String inputBonusNumber(List<Integer> winNumber){
         System.out.println();
         System.out.println(INPUT_BONUS_MESSAGE);
         String number = Console.readLine();
