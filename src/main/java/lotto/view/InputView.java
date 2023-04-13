@@ -15,6 +15,7 @@ public class InputView {
             StartMoneyValidation.checkMoneyAllValid(money);
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
+            throw new IllegalArgumentException("[ERROR] 1000의 배수만 입력 가능합니다.");
         }
         return money;
     }

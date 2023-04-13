@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import lotto.domain.LottoTickets;
-import lotto.validation.StartMoneyValidation;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -11,7 +10,6 @@ public class LottoController {
     LottoTickets lottoTickets;
     public void run(){
         String money = inputView.inputStartMoney();
-        StartMoneyValidation.checkMoneyAllValid(money);
         OutputView.printBuyingMessage(Integer.parseInt(money)/1000);
         lottoTickets = new LottoTickets(Integer.parseInt(money)/1000);
         OutputView.printLottos(lottoTickets.getLottoTickets());
