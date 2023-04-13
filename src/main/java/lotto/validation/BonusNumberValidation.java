@@ -4,7 +4,7 @@ import java.util.List;
 
 public class BonusNumberValidation {
 
-    public static void validate(String str, List<String> winNumber){
+    public static void validate(String str, List<Integer> winNumber){
         if(isBetween1And45(str) && notInWinNumber(str,winNumber)){
             return;
         }
@@ -16,8 +16,8 @@ public class BonusNumberValidation {
         return number>=1 && number<=45;
     }
 
-    private static boolean notInWinNumber(String str, List<String> winNumber){
-        return winNumber.stream().allMatch(num-> !num.equals(str));
+    private static boolean notInWinNumber(String str, List<Integer> winNumber){
+        return winNumber.stream().allMatch(num-> num != Integer.parseInt(str));
     }
 
 
