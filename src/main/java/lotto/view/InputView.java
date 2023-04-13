@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Money;
+import lotto.domain.WinNumber;
 import lotto.validation.BonusNumberValidation;
 import lotto.validation.StartMoneyValidation;
 import lotto.validation.WinNumberValidation;
@@ -21,17 +22,10 @@ public class InputView {
         return money;
     }
 
-    public List<Integer> inputWinNumber(){
+    public String inputWinNumber(){
         System.out.println();
         System.out.println(INPUT_WIN_MESSAGE);
-        String number = Console.readLine();
-        try{
-            WinNumberValidation.validate(number);
-        }catch(IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            throw new IllegalArgumentException("[ERROR] 6자리의 수를,로 구별해서 작성해야 합니다.");
-        }
-        return Arrays.stream(number.split(",")).map(num->Integer.parseInt(num)).collect(Collectors.toList());
+        return Console.readLine();
     }
 
     public String inputBonusNumber(List<Integer> winNumber){
