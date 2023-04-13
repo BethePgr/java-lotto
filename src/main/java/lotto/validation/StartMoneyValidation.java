@@ -2,13 +2,13 @@ package lotto.validation;
 
 public class StartMoneyValidation {
 
-    private static final String START_ERROR_MESSAGE = "[ERROR] 1000의 배수인 숫자만 입력 가능합니다.";
 
-    public static void checkMoneyAllValid(String money){
+
+    public static void checkMoneyAllValid (String money) throws IllegalArgumentException{
         if(divide1000NoRemains(money) && doNotStartWithZero(money) && overThan1000(money) && onlyNumber(money)){
             return;
         }
-        throw new IllegalArgumentException(START_ERROR_MESSAGE);
+        throw new IllegalArgumentException();
     }
 
 

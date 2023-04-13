@@ -18,12 +18,6 @@ public class InputView {
         System.out.println(START_MESSAGE);
          Money moneys = new Money(Console.readLine());
          String money = moneys.getMoney();
-        try{
-            StartMoneyValidation.checkMoneyAllValid(money);
-        }catch(IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            throw new IllegalArgumentException("[ERROR] 1000의 배수만 입력 가능합니다.");
-        }
         return money;
     }
 
