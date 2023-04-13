@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.LottoTickets;
+import lotto.domain.WinNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,7 +17,8 @@ public class LottoController {
         OutputView.printBuyingMessage(Integer.parseInt(money)/1000);
         lottoTickets = new LottoTickets(Integer.parseInt(money)/1000);
         OutputView.printLottos(lottoTickets.getLottoTickets());
-        List<Integer> winNumber = inputView.inputWinNumber();
+        WinNumber winNumbers = new WinNumber(inputView.inputWinNumber());
+        List<Integer> winNumber = winNumbers.getWinNumber();
         String bonusNumber = inputView.inputBonusNumber(winNumber);
         outputView.printResult(lottoTickets.getLottoTickets(),winNumber,Integer.parseInt(bonusNumber));
         outputView.printBenefit(Integer.parseInt(money));
