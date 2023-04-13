@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.domain.Money;
 import lotto.validation.BonusNumberValidation;
 import lotto.validation.StartMoneyValidation;
 import lotto.validation.WinNumberValidation;
@@ -15,7 +16,8 @@ public class InputView {
 
     public String inputStartMoney(){
         System.out.println(START_MESSAGE);
-        String money =  Console.readLine();
+         Money moneys = new Money(Console.readLine());
+         String money = moneys.getMoney();
         try{
             StartMoneyValidation.checkMoneyAllValid(money);
         }catch(IllegalArgumentException e){

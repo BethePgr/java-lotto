@@ -10,6 +10,7 @@ public class LottoController {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     LottoTickets lottoTickets;
+
     public void run(){
         String money = inputView.inputStartMoney();
         OutputView.printBuyingMessage(Integer.parseInt(money)/1000);
