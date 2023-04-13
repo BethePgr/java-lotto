@@ -37,8 +37,10 @@ public class LottoResult {
             int count = (int)lottoTicket.stream()
                 .filter(num -> winNumber.stream().anyMatch(Predicate.isEqual(num))).count();
             boolean flag = lottoTicket.contains(bonusNumber);
-            LottoRanking lottoRank = LottoRanking.findLottoRank(count, flag);
-            winMap.put(lottoRank,winMap.get(lottoRank)+1);
+            List<LottoRanking> lottoRank = LottoRanking.findLottoRank(count, flag);
+            for(LottoRanking lotto : lottoRank){
+                winMap.put(lotto,winMap.get(lotto)+1);
+            }
         }
     }
 

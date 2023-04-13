@@ -36,9 +36,6 @@ public class OutputView {
 
     private void printResultDetails() {
         for (Map.Entry<LottoRanking, Integer> entry : winMap.entrySet()) {
-            if (entry.getKey().getWinNumber() == 0) {
-                continue;
-            }
             String temp = ", 보너스 볼 일치";
             if (!entry.getKey().isMatchBonus()) {
                 temp = "";
@@ -60,16 +57,5 @@ public class OutputView {
         System.out.printf("총 수익률은 %.1f %%입니다",(double)sum/money * 100);
     }
 
-    public static void main(String[] args) {
-        HashMap<String, Integer> map = new HashMap<>(){{
-            put("one",1);
-            put("two",2);
-            put("three",3);
-        }};
-
-        for(Map.Entry<String,Integer> entry : map.entrySet()){
-            System.out.println(entry.getValue() + entry.getKey());
-        }
-    }
 
 }

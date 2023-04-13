@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public enum LottoRanking {
 
@@ -8,8 +10,7 @@ public enum LottoRanking {
     Four(50000,4,false),
     Five(1500000,5,false),
     FiveBonus(30000000,5,true),
-    Six(2000000000,6,false),
-    noWin(0,0,false);
+    Six(2000000000,6,false);
 
     private final int prizeMoney;
     private final int winNumber;
@@ -21,10 +22,10 @@ public enum LottoRanking {
         this.matchBonus = matchBonus;
     }
 
-    public static LottoRanking findLottoRank(int winCount, boolean matchBonusNumber) {
+    public static List<LottoRanking> findLottoRank(int winCount, boolean matchBonusNumber) {
         return Arrays.stream(LottoRanking.values())
-            .filter(lottoRanking -> checkLottoRank(lottoRanking,winCount,matchBonusNumber))
-            .findAny().orElse(noWin);
+            .filter(lottoRanking -> checkLottoRank(lottoRanking,winCount,matchBonusNumber)).collect(
+                Collectors.toList());
     }
 
     private static boolean checkLottoRank(LottoRanking lottoRanking, int winCount, boolean matchBonusNumber){
