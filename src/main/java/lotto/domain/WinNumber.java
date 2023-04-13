@@ -8,6 +8,7 @@ import lotto.validation.WinNumberValidation;
 public class WinNumber {
     private final List<Integer> winNumber;
     private static final String ERROR_MESSAGE = "[ERROR] 6자리의 수를,로 구별해서 작성해야 합니다.";
+
     public WinNumber(String winNumber){
         validateWinNumber(winNumber);
         this.winNumber =  Arrays.stream(winNumber.split(",")).map(num->Integer.parseInt(num)).collect(Collectors.toList());;
