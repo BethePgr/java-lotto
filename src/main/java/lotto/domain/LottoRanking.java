@@ -37,7 +37,6 @@ public enum LottoRanking {
         return true;
     }
 
-
     public int getPrizeMoney(){
         return prizeMoney;
     }
