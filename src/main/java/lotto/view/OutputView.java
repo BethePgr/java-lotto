@@ -1,14 +1,18 @@
 package lotto.view;
 
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import lotto.domain.LottoRanking;
 import lotto.domain.LottoResult;
 
 public class OutputView {
 
     private static final String BUYING_MESSAGE = "개를 구매했습니다.";
-    private HashMap<String,Integer> winMap = new HashMap<>();
+    private Map<LottoRanking,Integer> winMap = new EnumMap<>(LottoRanking.class);
 
     public static void printBuyingMessage(int money){
         System.out.println();
@@ -25,13 +29,13 @@ public class OutputView {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
-        LottoResult lottoResult = new LottoResult(lottoTickets, winNumber, bonusNumber);
+        LottoResult lottoResult = new LottoResult(lottoTickets,winNumber,bonusNumber);
         winMap = lottoResult.getWinMap();
-        System.out.println("3개 일치 (5,000원) - "+winMap.get("three")+"개");
-        System.out.println("4개 일치 (50,000원) - "+winMap.get("four")+"개");
-        System.out.println("5개 일치 (1,500,000원) - "+winMap.get("five")+"개");
-        System.out.println("5개 일치,보너스 볼 일치 (30,000,000원) - "+winMap.get("fiveBonus")+"개");
-        System.out.println("6개 일치 (2,000,000,000원) - "+winMap.get("six")+"개");
+        System.out.println("3개 일치 (5,000원) - "+winMap.get(LottoRanking.Three)+"개");
+        System.out.println("4개 일치 (50,000원) - "+winMap.get(LottoRanking.Four)+"개");
+        System.out.println("5개 일치 (1,500,000원) - "+winMap.get(LottoRanking.Five)+"개");
+        System.out.println("5개 일치,보너스 볼 일치 (30,000,000원) - "+winMap.get(LottoRanking.FiveBonus)+"개");
+        System.out.println("6개 일치 (2,000,000,000원) - "+winMap.get(LottoRanking.Six)+"개");
     }
 
     public void printBenefit(int money){
@@ -43,5 +47,6 @@ public class OutputView {
         sum += winMap.get("three") * 5000;
         System.out.printf("총 수익률은 %.1f %%입니다",(double)sum/money * 100);
     }
+
 
 }
