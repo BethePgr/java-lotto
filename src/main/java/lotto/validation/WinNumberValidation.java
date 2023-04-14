@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class WinNumberValidation {
 
-    public static void validate(String str){
-        if(isDistinctSizeSix(str) && isSizeSix(str) && isNumberBetween1And45(str)){
+    public static void validate(String str) {
+        if (isDistinctSizeSix(str) && isSizeSix(str) && isNumberBetween1And45(str)) {
             return;
         }
         throw new IllegalArgumentException("[ERROR] 1~45사이의 숫자 6개,사이에 컴마만 사용가능하다.");

@@ -6,17 +6,18 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoTickets {
+
     private final int ticketCount;
     private List<List<Integer>> lottoTickets;
 
-    public LottoTickets(int ticketCount){
+    public LottoTickets(int ticketCount) {
         this.ticketCount = ticketCount;
         createLottoTickets();
     }
 
-    public List<List<Integer>> createLottoTickets(){
+    public List<List<Integer>> createLottoTickets() {
         lottoTickets = new ArrayList<>();
-        for(int i = 0;i<ticketCount;i++){
+        for (int i = 0; i < ticketCount; i++) {
             List<Integer> list = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(list);
             Lotto lotto = new Lotto(list);
@@ -25,8 +26,7 @@ public class LottoTickets {
         return lottoTickets;
     }
 
-
-    public List<List<Integer>> getLottoTickets(){
+    public List<List<Integer>> getLottoTickets() {
         return this.lottoTickets;
     }
 
