@@ -16,20 +16,15 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-    private static final InputView inputView = new InputView();
-    private static final OutputView outputView = new OutputView();
-    private static LottoTickets lottoTickets;
-    private static List<Integer> winNumber;
-    private static String bonusNumber;
-    private static String money;
-
-
     public void run() {
+
+        final OutputView outputView = new OutputView();
         try {
-            inputMoneyOutputLottoTickets();
-            inputWinNumOutputWinNum();
-            inputBonusOutputBonus();
-            outputView.printResult(lottoTickets.getLottoTickets(), winNumber,
+            String money = inputMoneyOutputMoney();
+            List<List<Integer>> lottoTickets = inputLottoTicketsOutputLottoTickets(money);
+            List<Integer> winNumber = inputWinNumOutputWinNum();
+            String bonusNumber = inputBonusOutputBonus(winNumber);
+            outputView.printResult(lottoTickets, winNumber,
                 Integer.parseInt(bonusNumber));
             outputView.printBenefit(Integer.parseInt(money));
         } catch (IllegalArgumentException e) {
@@ -37,22 +32,27 @@ public class LottoController {
         }
     }
 
-    private static String inputMoneyOutputLottoTickets() {
-        Money moneys = new Money(inputView.inputStartMoney());
-        money = moneys.getMoney();
+    private String inputMoneyOutputMoney() {
+        Money moneys = new Money(InputView.inputStartMoney());
+        String money = moneys.getMoney();
         OutputView.printBuyingMessage(Integer.parseInt(money) / 1000);
-        lottoTickets = new LottoTickets(Integer.parseInt(money) / 1000);
-        OutputView.printLottos(lottoTickets.getLottoTickets());
+
         return money;
     }
 
-    private static void inputWinNumOutputWinNum() {
-        WinNumber winNumbers = new WinNumber(inputView.inputWinNumber());
-        winNumber = winNumbers.getWinNumber();
+    private List<List<Integer>> inputLottoTicketsOutputLottoTickets(String money) {
+        LottoTickets lottoTickets = new LottoTickets(Integer.parseInt(money) / 1000);
+        OutputView.printLottos(lottoTickets.getLottoTickets());
+        return lottoTickets.getLottoTickets();
     }
 
-    private static void inputBonusOutputBonus() {
-        BonusNumber bonusNumbers = new BonusNumber(inputView.inputBonusNumber(), winNumber);
-        bonusNumber = bonusNumbers.getBonusNumber();
+    private List<Integer> inputWinNumOutputWinNum() {
+        WinNumber winNumbers = new WinNumber(InputView.inputWinNumber());
+        return winNumbers.getWinNumber();
+    }
+
+    private String inputBonusOutputBonus(List<Integer> winNumber) {
+        BonusNumber bonusNumbers = new BonusNumber(InputView.inputBonusNumber(), winNumber);
+        return bonusNumbers.getBonusNumber();
     }
 }
