@@ -18,15 +18,15 @@ public class LottoController {
 
     public void run() {
 
-        final OutputView outputView = new OutputView();
         try {
             String money = inputMoneyOutputMoney();
             List<List<Integer>> lottoTickets = inputLottoTicketsOutputLottoTickets(money);
             List<Integer> winNumber = inputWinNumOutputWinNum();
             String bonusNumber = inputBonusOutputBonus(winNumber);
-            outputView.printResult(lottoTickets, winNumber,
+            Map<LottoRanking, Integer> winMap = OutputView.printResult(lottoTickets,
+                winNumber,
                 Integer.parseInt(bonusNumber));
-            outputView.printBenefit(Integer.parseInt(money));
+            OutputView.printBenefit(Integer.parseInt(money),winMap);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

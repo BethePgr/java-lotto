@@ -13,7 +13,6 @@ import lotto.domain.LottoResult;
 public class OutputView {
 
     private static final String BUYING_MESSAGE = "개를 구매했습니다.";
-    private Map<LottoRanking, Integer> winMap = new EnumMap<>(LottoRanking.class);
 
     public static void printBuyingMessage(int money) {
         System.out.println();
@@ -26,17 +25,18 @@ public class OutputView {
         }
     }
 
-    public void printResult(List<List<Integer>> lottoTickets, List<Integer> winNumber,
+    public static Map<LottoRanking, Integer> printResult(List<List<Integer>> lottoTickets, List<Integer> winNumber,
         int bonusNumber) {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
         LottoResult lottoResult = new LottoResult(lottoTickets, winNumber, bonusNumber);
-        winMap = lottoResult.getWinMap();
-        printResultDetails();
+        Map<LottoRanking,Integer> winMap = lottoResult.getWinMap();
+        printResultDetails(winMap);
+        return winMap;
     }
 
-    private void printResultDetails() {
+    private static void printResultDetails(Map<LottoRanking,Integer> winMap) {
         DecimalFormat df = new DecimalFormat("###,###");
         for (Map.Entry<LottoRanking, Integer> entry : winMap.entrySet()) {
             String temp = ", 보너스 볼 일치";
@@ -50,7 +50,7 @@ public class OutputView {
         }
     }
 
-    public void printBenefit(int money) {
+    public static void printBenefit(int money, Map<LottoRanking,Integer> winMap) {
         long sum = 0;
         for (Map.Entry<LottoRanking, Integer> entry : winMap.entrySet()) {
             sum += entry.getKey().getPrizeMoney() * entry.getValue();
