@@ -49,11 +49,9 @@ public class OutputView {
 
     public void printBenefit(int money){
         long sum = 0;
-        sum += winMap.get("six") * 2000000000;
-        sum += winMap.get("fiveBonus") * 30000000;
-        sum += winMap.get("five") * 1500000;
-        sum += winMap.get("four") * 50000;
-        sum += winMap.get("three") * 5000;
+        for(Map.Entry<LottoRanking,Integer> entry : winMap.entrySet()){
+            sum += entry.getKey().getPrizeMoney() * entry.getValue();
+        }
         System.out.printf("총 수익률은 %.1f %%입니다",(double)sum/money * 100);
     }
 
