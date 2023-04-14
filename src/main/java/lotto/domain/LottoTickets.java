@@ -2,6 +2,7 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoTickets {
@@ -16,7 +17,9 @@ public class LottoTickets {
     public List<List<Integer>> createLottoTickets(){
         lottoTickets = new ArrayList<>();
         for(int i = 0;i<ticketCount;i++){
-            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1,45,6));
+            List<Integer> list = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            Collections.sort(list);
+            Lotto lotto = new Lotto(list);
             lottoTickets.add(lotto.getNumbers());
         }
         return lottoTickets;
@@ -26,4 +29,5 @@ public class LottoTickets {
     public List<List<Integer>> getLottoTickets(){
         return this.lottoTickets;
     }
+
 }

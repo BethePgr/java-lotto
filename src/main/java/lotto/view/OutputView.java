@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -35,14 +36,15 @@ public class OutputView {
     }
 
     private void printResultDetails() {
+        DecimalFormat df = new DecimalFormat("###,###");
         for (Map.Entry<LottoRanking, Integer> entry : winMap.entrySet()) {
             String temp = ", 보너스 볼 일치";
             if (!entry.getKey().isMatchBonus()) {
                 temp = "";
             }
             System.out.println(
-                entry.getKey().getWinNumber() + "개 일치" + temp + " (" + entry.getKey()
-                    .getPrizeMoney() + "원) - "
+                entry.getKey().getWinNumber() + "개 일치" + temp + " (" + df.format(entry.getKey()
+                    .getPrizeMoney()) + "원) - "
                     + entry.getValue() + "개");
         }
     }
@@ -52,7 +54,7 @@ public class OutputView {
         for(Map.Entry<LottoRanking,Integer> entry : winMap.entrySet()){
             sum += entry.getKey().getPrizeMoney() * entry.getValue();
         }
-        System.out.printf("총 수익률은 %.1f %%입니다",(double)sum/money * 100);
+        System.out.printf("총 수익률은 %.1f%%입니다.",(double)sum/money * 100);
     }
 
 

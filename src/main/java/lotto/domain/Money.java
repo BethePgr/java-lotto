@@ -12,7 +12,7 @@ public class Money {
         this.money = money;
     }
 
-    private void validateMoney(String money){
+    private void validateMoney(String money) throws IllegalArgumentException{
         try{
             StartMoneyValidation.checkMoneyAllValid(money);
         }catch(IllegalArgumentException e){

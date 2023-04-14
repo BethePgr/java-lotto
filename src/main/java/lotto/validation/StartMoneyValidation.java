@@ -5,7 +5,7 @@ public class StartMoneyValidation {
 
 
     public static void checkMoneyAllValid (String money) throws IllegalArgumentException{
-        if(divide1000NoRemains(money) && doNotStartWithZero(money) && overThan1000(money) && onlyNumber(money)){
+        if(onlyNumber(money) && divide1000NoRemains(money) && doNotStartWithZero(money) && overThan1000(money) ){
             return;
         }
         throw new IllegalArgumentException();
