@@ -13,12 +13,7 @@ public class Money {
     }
 
     private void validateMoney(String money) throws IllegalArgumentException{
-        try{
-            StartMoneyValidation.checkMoneyAllValid(money);
-        }catch(IllegalArgumentException e){
-            System.out.println(ERROR_MESSAGE);
-            throw new IllegalArgumentException(ERROR_MESSAGE);
-        }
+        StartMoneyValidation.checkMoneyAllValid(money);
     }
 
     public String getMoney(){

@@ -31,4 +31,9 @@ class MoneyTest {
             Money money = new Money("41000");
         });
     }
+
+    @Test
+    void z() {
+        Money money = new Money("a4000");
+    }
 }

@@ -8,7 +8,7 @@ public class StartMoneyValidation {
         if(onlyNumber(money) && divide1000NoRemains(money) && doNotStartWithZero(money) && overThan1000(money) ){
             return;
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("[ERROR]");
     }
 
 
