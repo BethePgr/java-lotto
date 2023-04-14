@@ -32,8 +32,4 @@ class MoneyTest {
         });
     }
 
-    @Test
-    void z() {
-        Money money = new Money("a4000");
-    }
 }

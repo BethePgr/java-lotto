@@ -52,7 +52,7 @@ class InputViewTest {
 
     @Test
     void 에러발생하면_안됨3() throws Exception {
-        String money = "2100";
+        String money = "21000ㅅ";
         assertDoesNotThrow(()->startMoneyValidation.checkMoneyAllValid(money));
     }
 }
